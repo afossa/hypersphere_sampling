@@ -268,74 +268,74 @@ void rand_vect_in_situ_even(int n,double* v){
 
 /******************************************************************************************************************/
 
-int main(void)
-{
-    double *v;
-    w = new double[1000000];
-
-    int D = 2;
-	time_t t_start,t_curr;
-    unsigned int N;
-    int dt(10);
-    
-    while(D<1e7)
-    {
-        std::cout<<D;
-/********************** Mueller **********************/
-        time(&t_start);
-        N = 0;
-        do{
-            rand_vect_mueller( D , w );
-            ++N;
-            time(&t_curr);
-        }while( N<10 || difftime(t_curr,t_start)<dt );
-        std::cout<<" "<<difftime(t_curr,t_start)*1.0/N;
-
-/*********************** Basic ***********************/
-        rand_vect_basic( D , w ); // call once to allocate memory
-        time(&t_start);
-        N = 0;
-        do{
-            rand_vect_basic( D , w );
-            ++N;
-            time(&t_curr);
-        }while( N<10 || difftime(t_curr,t_start)<dt );
-        std::cout<<" "<<difftime(t_curr,t_start)*1.0/N;
-
-/********************* BucketSort ********************/
-        rand_vect_bs( D , w ); // call once to allocate memory
-        time(&t_start);
-        N = 0;
-        do{
-            rand_vect_bs( D , w );
-            ++N;
-            time(&t_curr);
-        }while( N<10 || difftime(t_curr,t_start)<dt );
-        std::cout<<" "<<difftime(t_curr,t_start)*1.0/N;
-        
-/********************* InSitu (only even) ***********/
-        if(!(D&1) )
-        {
-            time(&t_start);
-            N = 0;
-            do{
-                rand_vect_in_situ_even( D , w );
-                ++N;
-                time(&t_curr);
-            }while( N<10 || difftime(t_curr,t_start)<dt );
-            std::cout<<" "<<difftime(t_curr,t_start)*1.0/N;
-        }
-        else
-            std::cout<<" -1"; // to preserve output format
-
-/****************************************************/
-        std::cout<<std::endl;
-/********************* increase D *******************/
-        if(D&1)
-            D = 2*floor(D*0.80901699435) ;
-        else
-            D = D+1;
-    }
-    return 0;
-}
+//int main(void)
+//{
+//    double *v;
+//    w = new double[1000000];
+//
+//    int D = 2;
+//	time_t t_start,t_curr;
+//    unsigned int N;
+//    int dt(10);
+//
+//    while(D<1e7)
+//    {
+//        std::cout<<D;
+///********************** Mueller **********************/
+//        time(&t_start);
+//        N = 0;
+//        do{
+//            rand_vect_mueller( D , w );
+//            ++N;
+//            time(&t_curr);
+//        }while( N<10 || difftime(t_curr,t_start)<dt );
+//        std::cout<<" "<<difftime(t_curr,t_start)*1.0/N;
+//
+///*********************** Basic ***********************/
+//        rand_vect_basic( D , w ); // call once to allocate memory
+//        time(&t_start);
+//        N = 0;
+//        do{
+//            rand_vect_basic( D , w );
+//            ++N;
+//            time(&t_curr);
+//        }while( N<10 || difftime(t_curr,t_start)<dt );
+//        std::cout<<" "<<difftime(t_curr,t_start)*1.0/N;
+//
+///********************* BucketSort ********************/
+//        rand_vect_bs( D , w ); // call once to allocate memory
+//        time(&t_start);
+//        N = 0;
+//        do{
+//            rand_vect_bs( D , w );
+//            ++N;
+//            time(&t_curr);
+//        }while( N<10 || difftime(t_curr,t_start)<dt );
+//        std::cout<<" "<<difftime(t_curr,t_start)*1.0/N;
+//
+///********************* InSitu (only even) ***********/
+//        if(!(D&1) )
+//        {
+//            time(&t_start);
+//            N = 0;
+//            do{
+//                rand_vect_in_situ_even( D , w );
+//                ++N;
+//                time(&t_curr);
+//            }while( N<10 || difftime(t_curr,t_start)<dt );
+//            std::cout<<" "<<difftime(t_curr,t_start)*1.0/N;
+//        }
+//        else
+//            std::cout<<" -1"; // to preserve output format
+//
+///****************************************************/
+//        std::cout<<std::endl;
+///********************* increase D *******************/
+//        if(D&1)
+//            D = 2*floor(D*0.80901699435) ;
+//        else
+//            D = D+1;
+//    }
+//    return 0;
+//}
 
